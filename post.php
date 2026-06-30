@@ -114,20 +114,39 @@ if (!$post) {
 </head>
 <body class="text-white antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 mix-blend-difference">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
-            <a href="<?php echo SITE_URL; ?>" class="text-xl font-bold tracking-tight uppercase">MNFST</a>
-            <a href="<?php echo SITE_URL; ?>" class="text-sm font-medium text-neutral-300 hover:text-white transition-colors flex items-center gap-2">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> All Guides
+        <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 mix-blend-difference bg-black/20 backdrop-blur">
+        <div class="container mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="<?php echo SITE_URL; ?>" class="text-sm font-bold tracking-tight">
+                <span class="text-xl uppercase">CODE HUNT'S </span>
+                <span class="text-xl mx-3">/</span>
+                <span>research</span>
             </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="https://codehuntspk.com" class="text-sm font-medium text-neutral-300 hover:text-white transition-colors">Our Website</a>
+            </div>
+
+            <!-- Hamburger Menu Button (Mobile) -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-neutral-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/80 backdrop-blur-sm border-t border-white/[0.05]">
+            <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
+                <a href="https://codehuntspk.com" class="text-sm font-medium text-neutral-300 hover:text-white transition-colors py-2">Our Website</a>
+            </div>
         </div>
     </nav>
 
     <!-- Article Header -->
     <header class="relative grid-bg">
         <div class="absolute inset-0" style="background: radial-gradient(ellipse at top right, rgba(49,46,129,0.15), #18181b, #000000); opacity: 0.5;"></div>
-        <div class="max-w-3xl mx-auto px-6 md:px-12 pt-36 pb-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 pt-36 pb-12 relative z-10">
             <a href="<?php echo SITE_URL; ?>" class="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-300 transition-colors mb-8">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to all guides
             </a>
@@ -145,14 +164,14 @@ if (!$post) {
         </div>
 
         <?php if ($post['featured_image']): ?>
-        <div class="max-w-4xl mx-auto px-6 md:px-12 pb-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 pb-16 relative z-10">
             <img src="<?php echo e($post['featured_image']); ?>" alt="<?php echo e($post['title']); ?>" class="w-full rounded-2xl border border-white/[0.08] opacity-70">
         </div>
         <?php endif; ?>
     </header>
 
     <!-- Article Content -->
-    <main class="max-w-3xl mx-auto px-6 md:px-12 py-16">
+    <main class="max-w-7xl mx-auto px-6 md:px-12 py-16">
         <article class="prose">
             <?php echo $parsedContent; ?>
         </article>
@@ -179,12 +198,35 @@ if (!$post) {
 
     <!-- Footer -->
     <footer class="border-t border-white/[0.05]">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="container mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-4">
             <p class="text-xs text-neutral-600">© <?php echo date('Y'); ?> <?php echo e(SITE_NAME); ?></p>
             <a href="<?php echo SITE_URL; ?>" class="text-sm text-neutral-500 hover:text-neutral-300 transition-colors">Back to all guides →</a>
         </div>
     </footer>
 
     <script>lucide.createIcons();</script>
+    <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the mobile menu button and the mobile menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Toggle the mobile menu when the button is clicked
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close the mobile menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = mobileMenu.contains(event.target);
+            const isClickOnButton = mobileMenuButton.contains(event.target);
+
+            if (!isClickInsideMenu && !isClickOnButton) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    });
+</script>
 </body>
 </html>

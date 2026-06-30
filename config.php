@@ -1,22 +1,47 @@
 <?php
 // ============================================
-// DATABASE CONFIGURATION
-// Update these with your Hostinger DB credentials
-// Find them in hPanel → Databases → MySQL Databases
+// LOAD ENVIRONMENT VARIABLES
+// Create a .env file in the same directory with your settings
 // ============================================
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'guide');     // Your database name
-define('DB_USER', 'root');       // Your database user
-define('DB_PASS', 'root');    // Your database password
+$envPath = __DIR__ . '/.env';
+if (file_exists($envPath)) {
+    $envLines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($envLines as $line) {
+        // Skip comments
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+        // Parse KEY=VALUE
+        if (strpos($line, '=') !== false) {
+            $parts = explode('=', $line, 2);
+            $key = trim($parts[0]);
+            $value = trim($parts[1] ?? '');
+            // Remove surrounding quotes if present
+            $value = preg_replace('/^[' . "'\"" . '](.*)[' . "'\"" . ']$/', '$1', $value);
+            putenv("$key=$value");
+            $_ENV[$key] = $value;
+        }
+    }
+}
 
-define('SITE_NAME', 'MNFST Studio');
-define('SITE_URL', 'http://localhost'); // Change to your domain
+// ============================================
+// DATABASE CONFIGURATION
+// Set these in your .env file or environment variables
+// ============================================
+
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_NAME', getenv('DB_NAME') ?: 'guide');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: 'root');
+
+define('SITE_NAME', getenv('SITE_NAME') ?: 'MNFST Studio');
+define('SITE_URL', getenv('SITE_URL') ?: 'http://localhost');
 define('UPLOAD_DIR', __DIR__ . '/uploads/');
 define('UPLOAD_URL', SITE_URL . '/uploads/');
 
 // Admin session name
-define('SESSION_NAME', 'mnfst_admin_session');
+define('SESSION_NAME', getenv('SESSION_NAME') ?: 'mnfst_admin_session');
 
 // Error reporting (set to 0 in production)
 error_reporting(E_ALL);

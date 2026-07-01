@@ -14,6 +14,7 @@ unset($_SESSION['flash']);
     <title>Dashboard — <?php echo e(SITE_NAME); ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="shortcut icon" href="/public/logo.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; }

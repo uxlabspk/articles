@@ -41,6 +41,7 @@ if (!$post) {
             theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
         }
     </script>
+    <link rel="shortcut icon" href="/public/logo.png">
     <style>
         body { font-family: 'Inter', sans-serif; background: #050505; }
         .grid-bg {

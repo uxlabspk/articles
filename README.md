@@ -1,101 +1,103 @@
-# Code Hunt's Research Site
+# Articles from Code Hunt's
 
-Modern PHP blog type platform for publishing AI engineering content. The app ships with a public-facing guides index, a single-article reader, and a password-protected admin CMS for creating, editing, publishing, and deleting posts.
+A modern PHP platform for publishing AI engineering content. Hosted at [articles.codehuntspk.com](https://articles.codehuntspk.com), this app provides a public-facing articles index, a single-article reader, and a password-protected admin CMS for creating, editing, publishing, and deleting posts.
 
 ## What It Does
 
-- Public guides homepage with featured cards
-- Markdown-powered article pages with syntax highlighting
-- Admin dashboard with post stats and CRUD controls
-- Draft and published post states
-- Featured image upload support
-- CSRF protection for admin actions
-- Auto-generated unique slugs and reading-time estimates
+This platform helps you share your AI engineering work with the world:
+
+- **Articles homepage** with featured cards and categories
+- **Markdown-powered article pages** with syntax highlighting for clean code examples
+- **Admin dashboard** showing post statistics and easy content management
+- **Draft and published states** so you can write freely before going live
+- **Featured image support** to make each post visually engaging
+- **CSRF protection** keeps your admin actions secure
+- **Auto-generated slugs** and reading-time estimates for better SEO
 
 ## Tech Stack
 
-- PHP 8+
-- MySQL / MariaDB
-- Tailwind CSS via CDN
-- EasyMDE for Markdown editing
-- Parsedown for Markdown rendering
-- Lucide icons
-- Highlight.js for code blocks
+Built with modern, reliable tools:
+
+- **PHP 8+** — fast and secure server-side processing
+- **MySQL / MariaDB** — robust database for storing your content
+- **Tailwind CSS via CDN** — beautiful, responsive styling without build steps
+- **EasyMDE** — a polished Markdown editor that feels natural to write in
+- **Parsedown** — clean Markdown rendering with safe mode for security
+- **Lucide icons** — crisp, modern iconography
+- **Highlight.js** — syntax highlighting that makes code pop
 
 ## Project Structure
 
+Here's how the pieces fit together:
+
 ```text
-index.php            Public guides homepage
-post.php             Single post view
-setup.php            One-time database bootstrap
-config.php           Environment and database configuration
-functions.php        Shared helpers and CRUD logic
-admin/               Admin dashboard, auth, and post management
-public/logo.png      Site favicon / logo
+index.php            The public articles homepage
+post.php             Individual article view
+setup.php            One-time database setup (delete after use!)
+config.php           Database and environment settings
+functions.php        Shared utilities and helper functions
+admin/               Admin panel with authentication and post management
+public/logo.png      Your site's favicon
 ```
 
 ## Features
 
-### Public site
+### For Readers
 
-- Grid-based guide listing
-- Category, author, and reading-time metadata
-- Article navigation to previous / next posts
-- Markdown content rendering with safe mode enabled
-- Code block highlighting
+- **Beautiful grid layout** with featured article cards
+- **Rich metadata** showing categories, authors, and estimated reading time
+- **Seamless navigation** between related articles
+- **Clean Markdown rendering** with safe mode to protect against XSS
+- **Syntax highlighting** that makes code examples easy to read
 
-### Admin CMS
+### For Authors
 
-- Secure login session handling
-- Dashboard with total, published, and draft counts
-- Create / edit / delete posts
-- Publish or save as draft
-- Featured image upload and replacement
-- Inline Markdown editor with preview, autosave, and image upload
+- **Secure admin panel** with session-based authentication
+- **Intuitive dashboard** showing your published and draft articles
+- **Full CRUD control** — create, edit, delete, and publish posts
+- **Draft support** so you can write without pressure
+- **Featured image upload** to make each article stand out
+- **WYSIWYG Markdown editor** with live preview and autosave
 
 ## Setup
 
-### 1. Configure the database
+Getting started is straightforward:
 
-Update `config.php` or create a `.env` file in the project root with your database settings:
+### 1. Set up your database
+
+Either edit `config.php` directly or create a `.env` file in the project root:
 
 ```env
 DB_HOST=localhost
-DB_NAME=guide
+DB_NAME=articles
 DB_USER=root
 DB_PASS=root
-SITE_NAME=Your Site Name
-SITE_URL=http://localhost:8000
-SESSION_NAME=your_site_name_admin_session
+SITE_NAME=Code Hunt's Articles
+SITE_URL=https://articles.codehuntspk.com
+SESSION_NAME=codehunt_articles_session
 ```
 
-`SITE_URL` should match the URL where the project is hosted.
+Make sure `SITE_URL` matches where your site will be hosted.
 
-### 2. Run the bootstrap script
+### 2. Run the setup script
 
-Open `setup.php` in your browser once after configuring the database.
+Open `setup.php` in your browser once to initialize the database. It will:
 
-It will:
+- Create the `posts` and `admins` tables
+- Add a default admin account
+- Populate with sample articles
 
-- create the `posts` table
-- create the `admins` table
-- insert a default admin account
-- add sample guide posts
-
-Default admin credentials created by setup:
-
+**Default login:**
 - Username: `admin`
 - Password: `admin123`
 
-Change these immediately after logging in.
+**Security note:** Change these credentials immediately after your first login, and delete `setup.php` from production.
 
-Important: delete `setup.php` from the server after setup is complete.
+### 3. Start using it
 
-### 3. Use the app
-
-- Public site: `index.php`
-- Admin login: `admin/login.php`
-- Dashboard: `admin/dashboard.php`
+- **Public site:** Visit `index.php`
+- **Admin login:** Go to `admin/login.php`
+- **Dashboard:** Check out `admin/dashboard.php`
 
 ## Local Development
 

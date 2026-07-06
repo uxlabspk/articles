@@ -9,7 +9,7 @@ require_once __DIR__ . '/functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guides — <?php echo e(SITE_NAME); ?></title>
+    <title>Articles — <?php echo e(SITE_NAME); ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -25,9 +25,9 @@ require_once __DIR__ . '/functions.php';
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; background: #050505; }
-        .guide-card { transition: all 0.3s ease; }
-        .guide-card:hover { background: rgba(23,23,23,0.4) !important; transform: translateY(-2px); }
-        .guide-card:hover .card-img { opacity: 0.8; transform: scale(1.05); }
+        .article-card { transition: all 0.3s ease; }
+        .article-card:hover { background: rgba(23,23,23,0.4) !important; transform: translateY(-2px); }
+        .article-card:hover .card-img { opacity: 0.8; transform: scale(1.05); }
         .card-img { transition: all 0.7s ease-out; opacity: 0.6; }
         .tag { background: rgba(129,140,248,0.1); color: #818cf8; }
         .grid-bg {
@@ -45,7 +45,7 @@ require_once __DIR__ . '/functions.php';
             <a href="<?php echo SITE_URL; ?>" class="text-sm font-bold tracking-tight">
                 <span class="text-xl uppercase">CODE HUNT'S </span>
                 <span class="text-xl mx-3">/</span>
-                <span>research</span>
+                <span>Articles</span>
             </a>
 
             <!-- Desktop Navigation Links -->
@@ -72,14 +72,14 @@ require_once __DIR__ . '/functions.php';
         <div class="absolute inset-0" style="background: radial-gradient(ellipse at top right, rgba(49,46,129,0.2), #18181b, #000000); opacity: 0.6;"></div>
         <div class="container mx-auto px-6 md:px-12 pt-32 pb-16 relative z-10 w-full">
             <div class="max-w-3xl">
-                <p class="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-6">Guides & Insights</p>
+                <p class="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-6">Articles & Insights</p>
                 <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] mb-8">
                     Build AI<br>
                     <span class="text-neutral-500">products that</span><br>
                     actually ship.
                 </h1>
                 <p class="text-base md:text-lg font-light text-neutral-400 leading-relaxed max-w-xl">
-                    Practical guides on AI engineering, infrastructure decisions, and product strategy — from people who've shipped real AI products.
+                    Practical articles on AI engineering, infrastructure decisions, and product strategy — from people who've shipped real AI products.
                 </p>
             </div>
         </div>
@@ -90,7 +90,7 @@ require_once __DIR__ . '/functions.php';
         <div class="flex items-end justify-between mb-12">
             <div>
                 <p class="text-[10px] font-mono uppercase tracking-widest text-neutral-500 mb-3"><?php echo $totalPosts; ?> articles</p>
-                <h2 class="text-4xl md:text-5xl font-medium tracking-tighter">Latest Guides</h2>
+                <h2 class="text-4xl md:text-5xl font-medium tracking-tighter">Latest Articles</h2>
             </div>
         </div>
 
@@ -119,7 +119,7 @@ require_once __DIR__ . '/functions.php';
 
         <?php if (empty($posts)): ?>
         <div class="text-center py-24">
-            <p class="text-neutral-500 text-lg">No guides published yet.</p>
+            <p class="text-neutral-500 text-lg">No articles published yet.</p>
             <p class="text-neutral-600 text-sm mt-2">Check back soon or head to the admin panel to create one.</p>
         </div>
         <?php endif; ?>
